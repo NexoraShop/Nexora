@@ -1,126 +1,173 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Nexora – Exquisite Fragrances</title>
-  <link rel="stylesheet" href="style.css" />
-  <script src="https://www.paypal.com/sdk/js?client-id=sb&currency=CHF"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nexora Perfume Shop</title>
+  <script src="https://www.paypal.com/sdk/js?client-id=sb&currency=EUR" data-namespace="paypal"></script>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f2f2f2;
+      padding: 20px;
+    }
+    .search-bar {
+      margin-bottom: 30px;
+    }
+    input[type="text"] {
+      padding: 10px;
+      width: 100%;
+      max-width: 400px;
+      font-size: 16px;
+    }
+    .category-links {
+      margin-bottom: 30px;
+    }
+    .category-links a {
+      margin-right: 15px;
+      text-decoration: none;
+      color: #333;
+      font-weight: bold;
+    }
+    .category-section {
+      margin-bottom: 50px;
+    }
+    .category-title {
+      font-size: 24px;
+      font-weight: bold;
+      margin: 20px 0;
+    }
+    .perfume-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      justify-content: center;
+    }
+    .perfume-card {
+      background-color: #fff;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      padding: 20px;
+      width: 250px;
+      text-align: center;
+    }
+    .perfume-card img {
+      width: 100%;
+      height: auto;
+      border-radius: 8px;
+      margin-bottom: 10px;
+    }
+    .paypal-button {
+      margin-top: 10px;
+    }
+  </style>
 </head>
 <body>
-  <header>
-    <h1>Nexora – Exquisite Fragrances</h1>
-    <p>Exclusive perfumes by Louis Vuitton, Xerjoff, and Parfums de Marly</p>
-  </header>
 
-  <main>
-    <!-- Louis Vuitton Section -->
-    <section>
-      <h2>Louis Vuitton (CHF 150)</h2>
-      <div class="products">
-        <div class="product">
-          <h3>Afternoon Swim</h3>
-          <img src="https://us.louisvuitton.com/images/is/image/lv/afternoon-swim.jpg" alt="Afternoon Swim" class="product-image">
-          <div class="paypal-button" data-name="Afternoon Swim" data-price="150"></div>
-        </div>
-        <div class="product">
-          <h3>Pacific Chill</h3>
-          <img src="https://us.louisvuitton.com/images/is/image/lv/pacific-chill.jpg" alt="Pacific Chill" class="product-image">
-          <div class="paypal-button" data-name="Pacific Chill" data-price="150"></div>
-        </div>
-        <div class="product">
-          <h3>Imagination</h3>
-          <img src="https://us.louisvuitton.com/images/is/image/lv/imagination.jpg" alt="Imagination" class="product-image">
-          <div class="paypal-button" data-name="Imagination" data-price="150"></div>
-        </div>
-        <div class="product">
-          <h3>City of Stars</h3>
-          <img src="https://us.louisvuitton.com/images/is/image/lv/city-of-stars.jpg" alt="City of Stars" class="product-image">
-          <div class="paypal-button" data-name="City of Stars" data-price="150"></div>
-        </div>
-      </div>
-    </section>
+  <div class="search-bar">
+    <input type="text" id="searchInput" onkeyup="searchPerfumes()" placeholder="Search for a perfume...">
+  </div>
 
-    <!-- Xerjoff Section -->
-    <section>
-      <h2>Xerjoff (CHF 140)</h2>
-      <div class="products">
-        <div class="product">
-          <h3>Torino21</h3>
-          <img src="https://www.xerjoff.com/USA/jtc-join-the-club/10538-torino21-tennis-club-eau-de-parfum-100ml.html" alt="Torino21" class="product-image">
-          <div class="paypal-button" data-name="Torino21" data-price="140"></div>
-        </div>
-        <div class="product">
-          <h3>Naxos</h3>
-          <img src="https://www.xerjoff.com/USA/xerjoff-1861-collection/201-naxos-eau-de-parfum.html" alt="Naxos" class="product-image">
-          <div class="paypal-button" data-name="Naxos" data-price="140"></div>
-        </div>
-        <div class="product">
-          <h3>Naxos Gold</h3>
-          <img src="https://www.xerjoff.com/USA/xerjoff-1861-collection/201-naxos-eau-de-parfum.html" alt="Naxos Gold" class="product-image">
-          <div class="paypal-button" data-name="Naxos Gold" data-price="140"></div>
-        </div>
-        <div class="product">
-          <h3>Erba Gold</h3>
-          <img src="https://www.xerjoff.com/extraeu/xerjoff-vibe-collection/10372-erba-gold-eau-de-parfum-50ml.html" alt="Erba Gold" class="product-image">
-          <div class="paypal-button" data-name="Erba Gold" data-price="140"></div>
-        </div>
-        <div class="product">
-          <h3>Erba Pura</h3>
-          <img src="https://www.cosmeterie.ch/en-CH/xerjoff/erba-pura-eau-de-parfum" alt="Erba Pura" class="product-image">
-          <div class="paypal-button" data-name="Erba Pura" data-price="140"></div>
-        </div>
-      </div>
-    </section>
+  <div class="category-links">
+    <a href="#louis-vuitton">Louis Vuitton</a>
+    <a href="#xerjoff">Xerjoff</a>
+    <a href="#parfums-de-marly">Parfums de Marly</a>
+  </div>
 
-    <!-- Parfums de Marly Section -->
-    <section>
-      <h2>Parfums de Marly (CHF 140)</h2>
-      <div class="products">
-        <div class="product">
-          <h3>Althair</h3>
-          <img src="https://www.flaconi.ch/parfum/parfums-de-marly/althair/parfums-de-marly-althair-eau-de-parfum.html" alt="Althair" class="product-image">
-          <div class="paypal-button" data-name="Althair" data-price="140"></div>
-        </div>
-        <div class="product">
-          <h3>Layton</h3>
-          <img src="https://parfums-de-marly.com/products/layton/" alt="Layton" class="product-image">
-          <div class="paypal-button" data-name="Layton" data-price="140"></div>
-        </div>
-        <div class="product">
-          <h3>Greenley</h3>
-          <img src="https://parfums-de-marly.com/products/greenley/" alt="Greenley" class="product-image">
-          <div class="paypal-button" data-name="Greenley" data-price="140"></div>
-        </div>
-      </div>
-    </section>
-  </main>
+  <div id="perfumeList"></div>
 
   <script>
-    const PAYPAL_EMAIL = "pa.07.sigrist@gmail.com";
+    const perfumes = [
+      { name: "Afternoon Swim", price: 150, category: "Louis Vuitton", img: "images/afternoon-swim.jpg" },
+      { name: "Pacific Chill", price: 150, category: "Louis Vuitton", img: "images/pacific-chill.jpg" },
+      { name: "City of Stars", price: 150, category: "Louis Vuitton", img: "images/city-of-stars.jpg" },
+      { name: "Imagination", price: 150, category: "Louis Vuitton", img: "images/imagination.jpg" },
 
-    document.querySelectorAll(".paypal-button").forEach(container => {
-      const name = container.dataset.name;
-      const price = container.dataset.price;
+      { name: "Erba Gold", price: 140, category: "Xerjoff", img: "images/erba-gold.jpg" },
+      { name: "Erba Pura", price: 140, category: "Xerjoff", img: "images/erba-pura.jpg" },
+      { name: "Torino 21", price: 140, category: "Xerjoff", img: "images/torino-21.jpg" },
 
-      paypal.Buttons({
-        createOrder: function(data, actions) {
-          return actions.order.create({
-            purchase_units: [{
-              amount: {
-                value: price
+      { name: "Greenley", price: 140, category: "Parfums de Marly", img: "images/greenley.jpg" },
+      { name: "Althair", price: 140, category: "Parfums de Marly", img: "images/althair.jpg" },
+      { name: "Layton", price: 140, category: "Parfums de Marly", img: "images/layton.jpg" }
+    ];
+
+    const perfumeList = document.getElementById("perfumeList");
+
+    function createCategorySection(category) {
+      const section = document.createElement("div");
+      section.className = "category-section";
+      section.id = category.toLowerCase().replace(/\s+/g, '-');
+
+      const title = document.createElement("div");
+      title.className = "category-title";
+      title.innerText = category;
+      section.appendChild(title);
+
+      const group = document.createElement("div");
+      group.className = "perfume-list";
+
+      perfumes.filter(p => p.category === category).forEach(perfume => {
+        const paypalId = `paypal-${perfume.name.replace(/\s+/g, '-').toLowerCase()}`;
+
+        const card = document.createElement("div");
+        card.className = "perfume-card";
+        card.innerHTML = `
+          <img src="${perfume.img}" alt="${perfume.name}">
+          <h3>${perfume.name}</h3>
+          <p>Category: ${perfume.category}</p>
+          <p>Price: ${perfume.price}.00 EUR</p>
+          <div id="${paypalId}" class="paypal-button"></div>
+        `;
+        group.appendChild(card);
+
+        setTimeout(() => {
+          const container = document.getElementById(paypalId);
+          if (container && container.children.length === 0) {
+            paypal.Buttons({
+              createOrder: function(data, actions) {
+                return actions.order.create({
+                  purchase_units: [{
+                    amount: {
+                      value: perfume.price.toString()
+                    },
+                    description: perfume.name,
+                    payee: {
+                      email_address: "pa.07.sigrist@gmail.com"
+                    }
+                  }]
+                });
               },
-              description: name
-            }]
-          });
-        },
-        onApprove: function(data, actions) {
-          return actions.order.capture().then(function(details) {
-            alert(`Thank you, ${details.payer.name.given_name}, for purchasing "${name}" at Nexora!`);
-          });
+              onApprove: function(data, actions) {
+                return actions.order.capture().then(function(details) {
+                  alert('Thank you for your purchase, ' + details.payer.name.given_name + '!');
+                });
+              }
+            }).render(`#${paypalId}`);
+          }
+        }, 0);
+      });
+
+      section.appendChild(group);
+      perfumeList.appendChild(section);
+    }
+
+    const categories = [...new Set(perfumes.map(p => p.category))];
+    categories.forEach(createCategorySection);
+
+    function searchPerfumes() {
+      const input = document.getElementById('searchInput').value.toLowerCase();
+      const cards = document.querySelectorAll('.perfume-card');
+      cards.forEach(card => {
+        if (!card.innerText.toLowerCase().includes(input)) {
+          card.style.display = 'none';
+        } else {
+          card.style.display = 'block';
         }
-      }).render(container);
-    });
+      });
+    }
   </script>
+
 </body>
 </html>
+
